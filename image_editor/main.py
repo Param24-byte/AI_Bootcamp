@@ -39,6 +39,13 @@ async def process_image(
     if action == "grayscale":
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         
+    elif action == "pencilsketch":
+        gray, color = cv2.pencilSketch(img, sigma_s=60, sigma_r=0.07, shade_factor=0.05)
+        if value == "color":
+            img = color
+        else:
+            img = gray
+            
     elif action == "sepia":
         kernel = np.array([[0.272, 0.534, 0.131],
                            [0.349, 0.686, 0.168],
